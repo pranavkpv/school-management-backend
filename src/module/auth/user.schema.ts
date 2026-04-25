@@ -7,22 +7,13 @@ export type StudentDocument = Student & Document;
 export class Student {
 
    @Prop({ required: true })
-   name!: string;
+   email!: string;
 
    @Prop({ required: true })
-   class!: string;
+   password!: string;
 
    @Prop({ required: true, unique: true })
-   rollNumber!: number;
-
-   @Prop()
-   age!: number;
-
-   @Prop()
-   contactInfo!: string;
-
-   @Prop({ required: true })
-   userId!: string;
+   role!: number;
 
 }
 
