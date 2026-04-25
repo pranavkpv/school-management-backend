@@ -37,7 +37,7 @@ export class AuthController {
 
     return {
       statusCode: HttpStatusCode.OK,
-      message: 'Login successful',
+      message:result.message,
       user: result.user,
     };
   }

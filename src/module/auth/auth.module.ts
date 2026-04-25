@@ -6,31 +6,39 @@ import { AuthController } from './auth.controller';
 import { AuthService } from './auth.service';
 import { AuthRepository } from './auth.repository';
 import { User, UserSchema } from './user.schema';
+import { ConfigModule } from '@nestjs/config';
+import { TokenService } from './token.service';
+import { HashService } from 'src/common/services/hash.service';
+import { CookieService } from 'src/common/services/cookie.service';
 
 
 
 @Module({
- imports:[
-  MongooseModule.forFeature([
-   {
-    name:User.name,
-    schema:UserSchema
-   }
-  ]),
+   imports: [
+      ConfigModule,
+      MongooseModule.forFeature([
+         {
+            name: User.name,
+            schema: UserSchema
+         }
+      ]),
 
-  JwtModule.register({
-   secret:process.env.JWT_SECRET,
-   signOptions:{
-    expiresIn:'15m'
-   }
-  })
- ],
+      JwtModule.register({
+         secret: process.env.JWT_SECRET,
+         signOptions: {
+            expiresIn: '15m'
+         }
+      })
+   ],
 
- controllers:[AuthController],
- providers:[
-  AuthService,
-  AuthRepository
- ]
+   controllers: [AuthController],
+   providers: [
+      AuthService,
+      AuthRepository,
+      TokenService,  
+      HashService,
+      CookieService
+   ]
 })
 
-export class AuthModule{}
+export class AuthModule { }

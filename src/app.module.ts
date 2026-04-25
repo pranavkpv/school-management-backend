@@ -3,6 +3,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
 
 import databaseConfig from './config/env.config';
+import { AuthModule } from './module/auth/auth.module';
 
 @Module({
   imports: [
@@ -27,6 +28,7 @@ import databaseConfig from './config/env.config';
         };
       },
     }),
+    AuthModule
 
   ],
 })

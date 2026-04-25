@@ -33,9 +33,7 @@ export class HttpExceptionFilter
     response.status(status).json({
       success: false,
       statusCode: status,
-      message,
-      path: request.url,
-      timestamp: new Date()
+      message
     });
 
   }
