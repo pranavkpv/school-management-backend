@@ -27,6 +27,7 @@ export async function setupApp(
   app.useGlobalPipes(
     new ValidationPipe({
       whitelist: true,
+       forbidNonWhitelisted: true,
       transform: true
     })
   );

@@ -10,6 +10,7 @@ import { AuthService } from './auth.service';
 import { CookieService } from '../../common/services/cookie.service';
 import { ROUTES } from '../../common/constants/routes.constants';
 import { HttpStatusCode } from '../../common/constants/http-status.enum';
+import { LoginDto } from './dto/login.dto';
 
 @Controller(ROUTES.AUTH)
 export class AuthController {
@@ -22,7 +23,7 @@ export class AuthController {
   @Post(ROUTES.LOGIN)
   @HttpCode(HttpStatusCode.OK)
   async login(
-    @Body() loginDto: any,
+    @Body() loginDto: LoginDto,
     @Res({ passthrough: true }) res: Response,
   ) {
 
