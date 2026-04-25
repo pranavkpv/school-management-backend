@@ -22,10 +22,7 @@ export class Student {
    contactInfo!: string;
 
    @Prop({ required: true })
-   password!: string;
-
-   @Prop({ required: true, unique: true })
-   email!: string;
+   userId!: string;
 
 }
 
