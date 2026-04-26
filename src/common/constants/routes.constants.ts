@@ -8,6 +8,7 @@ export const ROUTES = {
     TEACHER: 'admin/teacher',
     SUBJECT: 'admin/subject',
     CLASS: 'admin/class',
-    ADD: '/add-admin'
+    ADD: '/add-admin',
+    ASSIGN: 'admin/assign'
   },
 };

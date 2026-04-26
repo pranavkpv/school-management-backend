@@ -14,5 +14,13 @@ export const MESSAGES = {
   CLASS: {
     NOT_FOUND: 'Class not found',
     DELETE: 'Class deleted successfully'
+  },
+  TEACHER: {
+    NOT_FOUND: 'Teacher not found',
+    DELETE:'Teacher deleted successfully',
+    ADD:'Teacher addedd successfully'
+  },
+  SUBJECT:{
+    ADD:'Subject added successfully'
   }
 };

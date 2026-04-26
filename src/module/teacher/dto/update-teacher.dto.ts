@@ -6,9 +6,8 @@ export class UpdateTeacherDto {
   name?: string;
 
   @IsOptional()
-  @IsArray()
-  @IsString({ each: true })
-  subjectIds?: string[];
+  @IsString()
+  subjectId?: string;
 
   @IsOptional()
   @IsInt()

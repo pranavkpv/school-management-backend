@@ -6,9 +6,8 @@ export class CreateTeacherDto {
   name!: string;
 
   @IsOptional()
-  @IsArray()
-  @IsString({ each: true })
-  subjectIds?: string[];
+  @IsString()
+  subjectId?: string;
 
   @IsOptional()
   @IsInt()
@@ -21,5 +20,5 @@ export class CreateTeacherDto {
 
   @IsOptional()
   @IsEmail()
-  email?: string;
+  email!: string;
 }

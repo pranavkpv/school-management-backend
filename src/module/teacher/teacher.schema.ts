@@ -8,8 +8,8 @@ export class Teacher {
   @Prop({ required: true, trim: true })
   name!: string;
 
-  @Prop({ type: [String], default: [] })
-  subjectIds!: string[];
+  @Prop({ required: true })
+  subjectId!: string;
 
   @Prop({ default: 0 })
   experience!: number;
@@ -17,11 +17,8 @@ export class Teacher {
   @Prop()
   contactInfo!: string;
 
-  @Prop()
-  email!: string;
-
-  @Prop()
-  userId!: string;
+  @Prop({ required: true })
+   userId!: string;
 }
 
 export const TeacherSchema = SchemaFactory.createForClass(Teacher);

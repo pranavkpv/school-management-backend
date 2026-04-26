@@ -10,9 +10,9 @@ export class TeacherRepository {
   constructor(
     @InjectModel(Teacher.name)
     private readonly teacherModel: Model<TeacherDocument>,
-  ) {}
+  ) { }
 
-  create(dto: CreateTeacherDto) {
+  create(dto: Partial<Teacher>) {
     return this.teacherModel.create(dto);
   }
 

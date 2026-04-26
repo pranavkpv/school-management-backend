@@ -7,16 +7,21 @@ import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { SubjectService } from './subject.service';
 import { CreateSubjectDto } from './dto/create-subject.dto';
 import { UpdateSubjectDto } from './dto/update-subject.dto';
+import { MESSAGES } from 'src/common/constants/messages.constants';
 
 @Controller(ROUTES.ADMIN.SUBJECT)
 @UseGuards(JwtAuthGuard, RolesGuard)
 @Roles(ROLE.ADMIN)
 export class SubjectController {
-  constructor(private readonly subjectService: SubjectService) {}
+  constructor(private readonly subjectService: SubjectService) { }
 
   @Post()
   create(@Body() dto: CreateSubjectDto) {
-    return this.subjectService.create(dto);
+    this.subjectService.create(dto);
+    return {
+      success: true,
+      message: MESSAGES.SUBJECT.ADD
+    }
   }
 
   @Get()

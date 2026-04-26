@@ -8,16 +8,21 @@ import { TeacherService } from './teacher.service';
 import { CreateTeacherDto } from './dto/create-teacher.dto';
 import { UpdateTeacherDto } from './dto/update-teacher.dto';
 import { AssignTeacherSubjectsDto } from './dto/assign-teacher-subjects.dto';
+import { MESSAGES } from 'src/common/constants/messages.constants';
 
 @Controller(ROUTES.ADMIN.TEACHER)
 @UseGuards(JwtAuthGuard, RolesGuard)
 @Roles(ROLE.ADMIN)
 export class TeacherController {
-  constructor(private readonly teacherService: TeacherService) {}
+  constructor(private readonly teacherService: TeacherService) { }
 
   @Post()
   create(@Body() dto: CreateTeacherDto) {
-    return this.teacherService.create(dto);
+    this.teacherService.create(dto);
+    return {
+      succe: true,
+      message: MESSAGES.TEACHER.ADD
+    }
   }
 
   @Get()
@@ -35,10 +40,10 @@ export class TeacherController {
     return this.teacherService.update(id, dto);
   }
 
-  @Patch(':id/subjects')
-  assignSubjects(@Param('id') id: string, @Body() dto: AssignTeacherSubjectsDto) {
-    return this.teacherService.assignSubjects(id, dto);
-  }
+  // @Patch(':id/subjects')
+  // assignSubjects(@Param('id') id: string, @Body() dto: AssignTeacherSubjectsDto) {
+  //   return this.teacherService.assignSubjects(id, dto);
+  // }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
