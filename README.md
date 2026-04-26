@@ -39,6 +39,12 @@ SMTP_USER=your_email@gmail.com
 SMTP_PASS=your_app_password
 
 NODE_ENV=development
+
+PAYPAL_CLIENT_ID=your paypal client id
+
+PAYPAL_CLIENT_SECRET=your paypal client secret
+
+PAYPAL_MODE=sandbox  
 ```
 
 Replace placeholder values with your own configuration.
