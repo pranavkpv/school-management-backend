@@ -1,5 +1,5 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { Document } from 'mongoose';
+import { Document, Types } from 'mongoose';
 
 export type StudentDocument = Student & Document;
 
@@ -9,8 +9,12 @@ export class Student {
    @Prop({ required: true })
    name!: string;
 
-   @Prop({ required: true })
-   class!: string;
+   @Prop({
+      type: Types.ObjectId,
+      ref: 'SchoolClass',
+      required: true
+   })
+   classId!: Types.ObjectId;
 
    @Prop({ required: true, unique: true })
    rollNumber!: number;
@@ -21,8 +25,12 @@ export class Student {
    @Prop()
    contactInfo!: string;
 
-   @Prop({ required: true })
-   userId!: string;
+   @Prop({
+      type: Types.ObjectId,
+      ref: 'User',
+      required: true
+   })
+   userId!: Types.ObjectId;
 
 }
 

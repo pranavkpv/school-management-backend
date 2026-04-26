@@ -8,6 +8,7 @@ import { LoginDto } from './dto/login.dto';
 import { MESSAGES } from '../../common/constants/messages.constants';
 import { TokenService } from './token.service';
 import { HashService } from 'src/common/services/hash.service';
+import { ROLE } from 'src/common/constants/role.enum';
 
 @Injectable()
 export class AuthService {
@@ -19,7 +20,7 @@ export class AuthService {
    ) { }
 
    async login(
-      loginDto: LoginDto
+      loginDto: LoginDto,
    ) {
 
       const user =
