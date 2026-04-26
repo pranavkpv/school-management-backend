@@ -9,9 +9,12 @@ import { TeacherModule } from './module/teacher/teacher.module';
 import { SubjectModule } from './module/subject/subject.module';
 import { ClassModule } from './module/class/class.module';
 import { ClassTeacherAssignmentModule } from './module/class-teacher-assignment/class-teacher-assignment.module';
+import { ScheduleModule } from '@nestjs/schedule';
+import { FeeModule } from './module/fees/fees.module';
 
 @Module({
   imports: [
+    ScheduleModule.forRoot(),
     ConfigModule.forRoot({
       isGlobal: true,
       load: [databaseConfig],
@@ -38,7 +41,8 @@ import { ClassTeacherAssignmentModule } from './module/class-teacher-assignment/
     TeacherModule,
     SubjectModule,
     ClassModule,
-    ClassTeacherAssignmentModule
+    ClassTeacherAssignmentModule,
+    FeeModule
   ],
 })
 export class AppModule {}

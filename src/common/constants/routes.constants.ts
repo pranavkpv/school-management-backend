@@ -11,4 +11,7 @@ export const ROUTES = {
     ADD: '/add-admin',
     ASSIGN: 'admin/assign'
   },
+  STUDENT:{
+    FEES:'student/fees'
+  }
 };
