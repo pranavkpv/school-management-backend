@@ -38,8 +38,10 @@ export class AuthController {
     console.log(result.accessToken)
 
     return {
-      statusCode: HttpStatusCode.OK,
-      message: result.message
+      success: true,
+      message: result.message,
+      role:result.user.role
+
     };
   }
 }

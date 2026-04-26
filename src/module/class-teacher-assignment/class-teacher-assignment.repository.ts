@@ -10,7 +10,7 @@ export class ClassTeacherAssignmentRepository {
   constructor(
     @InjectModel(ClassTeacherAssignment.name)
     private readonly model: Model<ClassTeacherAssignmentDocument>,
-  ) {}
+  ) { }
 
   async create(dto: CreateAssignmentDto) {
     return this.model.create(dto);
@@ -29,6 +29,30 @@ export class ClassTeacherAssignmentRepository {
       .find({ classId })
       .populate('teacherId')
       .populate('subjectId');
+  }
+
+  async update(
+    id: string,
+    dto: CreateAssignmentDto
+  ) {
+
+    return this.model
+      .findByIdAndUpdate(
+        id,
+        {
+          classId: dto.classId,
+          teacherId: dto.teacherId,
+          subjectId: dto.subjectId
+        },
+        {
+          new: true,
+          runValidators: true
+        }
+      )
+      .populate('classId')
+      .populate('teacherId')
+      .populate('subjectId');
+
   }
 
   async findByTeacher(teacherId: string) {

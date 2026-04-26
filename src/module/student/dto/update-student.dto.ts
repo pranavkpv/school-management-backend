@@ -7,7 +7,7 @@ export class UpdateStudentDto {
 
   @IsOptional()
   @IsString()
-  class?: string;
+  classId?: string;
 
   @IsOptional()
   @IsInt()

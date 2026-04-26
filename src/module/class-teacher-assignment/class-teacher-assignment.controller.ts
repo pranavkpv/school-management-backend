@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Post, Delete, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Delete, UseGuards, Patch } from '@nestjs/common';
 import { ClassTeacherAssignmentService } from './class-teacher-assignment.service';
 import { CreateAssignmentDto } from './dto/create-assignment.dto';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
@@ -21,6 +21,17 @@ export class ClassTeacherAssignmentController {
    @Get()
    getAll() {
       return this.service.getAllAssignments();
+   }
+
+   @Patch(':id')
+   updateAssignment(
+      @Param('id') id: string,
+      @Body() dto: CreateAssignmentDto
+   ) {
+      return this.service.updateAssignment(
+         id,
+         dto
+      );
    }
 
    @Get('class/:classId')

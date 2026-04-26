@@ -2,8 +2,8 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { Teacher, TeacherDocument } from './teacher.schema';
-import { CreateTeacherDto } from './dto/create-teacher.dto';
 import { UpdateTeacherDto } from './dto/update-teacher.dto';
+import { CreateTeacherRepoDto } from './dto/create-teacher-repo-dto';
 
 @Injectable()
 export class TeacherRepository {
@@ -12,12 +12,27 @@ export class TeacherRepository {
     private readonly teacherModel: Model<TeacherDocument>,
   ) { }
 
-  create(dto: Partial<Teacher>) {
+  create(dto: CreateTeacherRepoDto) {
     return this.teacherModel.create(dto);
   }
 
   findAll() {
-    return this.teacherModel.find().sort({ createdAt: -1 });
+    return this.teacherModel
+      .find()
+
+      .populate({
+        path: "subjectId",
+        select: "name"
+      })
+
+      .populate({
+        path: "userId",
+        select: "email"
+      })
+
+      .sort({
+        createdAt: -1
+      });
   }
 
   findById(id: string) {
