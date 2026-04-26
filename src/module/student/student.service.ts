@@ -10,31 +10,27 @@ import { HashService } from 'src/common/services/hash.service';
 import { CreateStudentDto } from './dto/create-student.dto';
 import { StudentQueryDto } from './dto/student-query.dto';
 import { UpdateStudentDto } from './dto/update-student.dto';
+import { AuthRepository } from '../auth/auth.repository';
 
 
 @Injectable()
 export class StudentService {
   constructor(
     private readonly studentRepo: StudentRepository,
+    private readonly authRepo: AuthRepository,
     private readonly mailService: MailService,
     private readonly hashService: HashService,
-    @InjectModel(User.name)
-    private readonly userModel: Model<User>,
-  ) {}
+  ) { }
 
   async create(dto: CreateStudentDto) {
     const password = generatePassword();
     const hashedPassword = await this.hashService.hashValue(password);
 
-    const user = await this.userModel.create({
-      email: dto.email,
-      password: hashedPassword,
-      role: ROLE.STUDENT,
-    });
+    const user = await this.authRepo.create({ email: dto.email, password: hashedPassword, role: ROLE.STUDENT })
 
     const student = await this.studentRepo.create({
       name: dto.name,
-      class: dto.class,
+      classId: dto.classId,
       rollNumber: dto.rollNumber,
       age: dto.age,
       contactInfo: dto.contactInfo,

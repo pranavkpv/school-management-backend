@@ -9,5 +9,10 @@ export const MESSAGES = {
   },
   GENERAL: {
     SERVER_ERROR: 'Internal server error',
+    INVALID_ROLE: 'Invalid role'
+  },
+  CLASS: {
+    NOT_FOUND: 'Class not found',
+    DELETE: 'Class deleted successfully'
   }
 };

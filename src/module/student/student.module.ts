@@ -8,6 +8,7 @@ import { MailService } from 'src/config/mail.service';
 import { User, UserSchema } from '../auth/user.schema';
 import { HashService } from 'src/common/services/hash.service';
 import { RolesGuard } from '../auth/guards/roles.guard';
+import { AuthRepository } from '../auth/auth.repository';
 
 
 @Module({
@@ -22,9 +23,10 @@ import { RolesGuard } from '../auth/guards/roles.guard';
         schema: UserSchema,
       },
     ]),
+    
   ],
   controllers: [StudentController],
-  providers: [StudentService, StudentRepository, MailService, HashService, RolesGuard],
+  providers: [StudentService, StudentRepository, MailService, HashService, RolesGuard,AuthRepository],
 })
 
 export class StudentModule {}

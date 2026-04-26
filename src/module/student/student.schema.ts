@@ -10,7 +10,7 @@ export class Student {
    name!: string;
 
    @Prop({ required: true })
-   class!: string;
+   classId!: string;
 
    @Prop({ required: true, unique: true })
    rollNumber!: number;

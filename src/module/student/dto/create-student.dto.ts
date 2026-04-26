@@ -7,7 +7,7 @@ export class CreateStudentDto {
 
   @IsString()
   @IsNotEmpty()
-  class!: string;
+  classId!: string;
 
   @IsInt()
   rollNumber!: number;
