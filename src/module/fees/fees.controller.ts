@@ -1,6 +1,10 @@
 import {
    Controller,
    Get,
+   HttpCode,
+   Param,
+   Post,
+   Query,
    Req,
    UseGuards
 } from '@nestjs/common';
@@ -32,5 +36,23 @@ export class FeeController {
 
       return this.feeService
          .getPendingFees(studentId);
+   }
+   // Step 1: Create PayPal order → return approval URL
+   @Post(':feeId/pay')
+   @HttpCode(200)
+   async initiatePayment(@Param('feeId') feeId: string) {
+      return this.feeService.createPaypalOrder(feeId);
+      // Returns: { approvalUrl: "https://paypal.com/...", orderId: "..." }
+   }
+   // Step 2: PayPal redirects here after user approves
+   // Called by frontend after redirect with ?token=&feeId=
+   @Post('capture')
+   @HttpCode(200)
+   async capturePayment(
+      @Query('orderId') orderId: string,
+      @Query('feeId') feeId: string,
+   ) {
+      const fee = await this.feeService.capturePaypalOrder(orderId, feeId);
+      return { success: true, fee };
    }
 }
