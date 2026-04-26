@@ -1,34 +1,17 @@
 # School Management Backend
 
-A basic backend project built with NestJS, TypeScript, and MongoDB for managing:
+Backend for the School Management System built with NestJS and MongoDB.
 
-- Students
-- Teachers
-- Classes
-- Attendance
-- Fees
-
-## Tech Stack
-
-- NestJS
-- TypeScript
-- MongoDB
-- Mongoose
-- @nestjs/config
-- bcrypt
-
----
-
-## Project Setup
-
-Clone the repository:
+## Repository
 
 ```bash
-git clone https://github.com/your-username/school-management-backend.git
+git clone https://github.com/pranavkpv/school-management-backend.git
 cd school-management-backend
 ```
 
-Install dependencies:
+---
+
+## Install Dependencies
 
 ```bash
 npm install
@@ -36,20 +19,35 @@ npm install
 
 ---
 
-## Environment Variables
+## Environment Setup
 
-Create a `.env` file in the root:
+Create a `.env` file in the project root:
 
 ```env
 PORT=5000
+
 MONGO_URI=mongodb://127.0.0.1:27017/schoolDB
+
+FRONTEND_URL=http://localhost:3000
+
+JWT_ACCESS_SECRET=your_access_secret
+
+JWT_REFRESH_SECRET=your_refresh_secret
+
+SMTP_USER=your_email@gmail.com
+
+SMTP_PASS=your_app_password
+
+NODE_ENV=development
 ```
+
+Replace placeholder values with your own configuration.
 
 ---
 
 ## Run Project
 
-Development mode:
+Development:
 
 ```bash
 npm run start:dev
@@ -82,101 +80,120 @@ Example:
 
 ```bash
 GET /api/students
-POST /api/students/register
+GET /api/student/fees
+POST /api/auth/login
 ```
+
+---
+
+## Features
+
+- Authentication with JWT
+- Cookie-based Access Token
+- Role-Based Authorization
+- Student Management
+- Teacher Management
+- Class Management
+- Attendance
+- Monthly Fee Generation
+- Pending Fee Collection APIs
+- Email Notifications (Nodemailer)
+
+---
+
+## Tech Stack
+
+- NestJS
+- TypeScript
+- MongoDB
+- Mongoose
+- Passport JWT
+- @nestjs/config
+- @nestjs/schedule
+- Nodemailer
+- bcrypt
 
 ---
 
 ## Modules
 
+### Auth
+- Login
+- Access Token
+- Refresh Token
+- Cookie Authentication
+
 ### Student
-Fields:
-
-- name
-- class
-- rollNumber
-- age
-- contactInfo
-- email
-- password
-
----
+- Create Student
+- View Student Profile
+- Student Fee Records
 
 ### Teacher
-
-- name
-- subject
-- experience
-- contactInfo
-- email
-- password
-
----
+- Create Teacher
+- Assign Class Teacher
 
 ### Class
-
-- className
-- subject
-- teacherId
-- classId
-
----
+- Class Management
+- Class Teacher Assignment
 
 ### Attendance
-
-- studentId
-- classId
-- date
-- status
-
----
+- Mark Attendance
+- View Attendance
 
 ### Fees
-
-- studentId
-- amount
-- dueDate
-- status
-- paypalOrderId
+- Monthly Fee Generation Cron
+- Pending Fee Records
+- Payment Status Tracking
 
 ---
 
-## Project Structure
+## Fee Collection Structure
+
+Fields:
 
 ```bash
-src/
-├── config/
-├── modules/
-│   ├── students/
-│   ├── teachers/
-│   ├── classes/
-│   ├── attendance/
-│   └── fees/
+studentId
+amount
+paymentStatus
+paymentDate
+monthOfPayment
+```
+
+Monthly fee records are automatically generated on the 5th of each month.
+
+---
+
+
+## Quick Start
+
+```bash
+git clone https://github.com/pranavkpv/school-management-backend.git
+
+cd school-management-backend
+
+npm install
+
+# create .env
+
+npm run start:dev
 ```
 
 ---
 
-## Features Implemented
+## Important
 
-- NestJS server setup
-- MongoDB connection
-- Schema models
-- Student register API
-- Student list API
-- Environment config setup
+Do not commit:
 
----
+```bash
+.env
+node_modules
+dist
+```
 
-## Future Improvements
-
-- JWT Authentication
-- Admin Dashboard APIs
-- Validation DTOs
-- Role-based access
-- Fee payment integration with PayPal
+Make sure `.gitignore` includes them.
 
 ---
 
 ## Author
 
-Pranav Raj
+Pranav Raj K P V
