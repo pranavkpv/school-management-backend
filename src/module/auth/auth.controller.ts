@@ -18,7 +18,7 @@ export class AuthController {
   constructor(
     private authService: AuthService,
     private cookieService: CookieService,
-  ) {}
+  ) { }
 
   @Post(ROUTES.LOGIN)
   @HttpCode(HttpStatusCode.OK)
@@ -35,11 +35,11 @@ export class AuthController {
       result.accessToken,
       result.refreshToken,
     );
+    console.log(result.accessToken)
 
     return {
       statusCode: HttpStatusCode.OK,
-      message:result.message,
-      user: result.user,
+      message: result.message
     };
   }
 }

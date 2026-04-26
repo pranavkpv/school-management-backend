@@ -2,6 +2,8 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { Student, StudentDocument } from './student.schema';
+import { StudentQueryDto } from './dto/student-query.dto';
+import { UpdateStudentDto } from './dto/update-student.dto';
 
 @Injectable()
 export class StudentRepository {
@@ -10,7 +12,7 @@ export class StudentRepository {
     private studentModel: Model<StudentDocument>,
   ) {}
 
-  create(data: any) {
+  create(data: Partial<Student>) {
     return this.studentModel.create(data);
   }
 
@@ -18,15 +20,15 @@ export class StudentRepository {
     return this.studentModel.findById(id);
   }
 
-  update(userId: string, data: any) {
-    return this.studentModel.findOneAndUpdate({ userId }, data, { new: true });
+  update(id: string, data: UpdateStudentDto) {
+    return this.studentModel.findByIdAndUpdate(id, data, { new: true });
   }
 
-  delete(userId: string) {
-    return this.studentModel.findOneAndDelete({ userId });
+  delete(id: string) {
+    return this.studentModel.findByIdAndDelete(id);
   }
 
-  async findAll(query: any, skip: number, limit: number) {
+  async findAll(query: StudentQueryDto, skip: number, limit: number) {
     const filter: any = {};
 
     if (query.search) {
@@ -40,7 +42,7 @@ export class StudentRepository {
       .sort({ createdAt: -1 });
   }
 
-  count(query: any) {
+  count(query: StudentQueryDto) {
     const filter: any = {};
     if (query.search) {
       filter.name = { $regex: query.search, $options: 'i' };

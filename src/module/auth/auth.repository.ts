@@ -6,15 +6,14 @@ import { User } from './user.schema';
 @Injectable()
 export class AuthRepository {
 
- constructor(
-  @InjectModel(User.name)
-  private userModel: Model<User>
- ){}
+  constructor(
+    @InjectModel(User.name)
+    private userModel: Model<User>
+  ) { }
 
- async findByEmail(
-   email:string
- ){
-   return this.userModel.findOne({ email });
- }
-
+  async findByEmail(
+    email: string
+  ) {
+    return this.userModel.findOne({ email });
+  }
 }

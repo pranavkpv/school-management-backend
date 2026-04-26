@@ -1,30 +1,21 @@
-import mongoose from 'mongoose';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { HydratedDocument, Types } from 'mongoose';
 
-@Schema()
-export class Class {
+export type SchoolClassDocument = HydratedDocument<SchoolClass>;
 
- @Prop()
- className!:string;
+@Schema({ timestamps: true })
+export class SchoolClass {
+  @Prop({ required: true, trim: true })
+  className!: string;
 
- @Prop()
- subject!:string;
+  @Prop({ required: true })
+  feesPerMonth!: number;
 
- @Prop()
- name!:string;
+  @Prop({ required: true })
+  startDate!: Date;
 
- @Prop({
-   type: mongoose.Schema.Types.ObjectId,
-   ref:'Teacher'
- })
- teacherId!:string;
-
- @Prop({
-   type: mongoose.Schema.Types.ObjectId,
-   ref:'Student'
- })
- classId!:string;
+  @Prop({ required: true })
+  durationMonths!: number;
 }
 
-export const ClassSchema =
-SchemaFactory.createForClass(Class);
+export const SchoolClassSchema = SchemaFactory.createForClass(SchoolClass);
